@@ -1,4 +1,8 @@
 # 関数の基本
+
+"""
+関数の基本
+"""
 print("関数！")
 
 
@@ -31,6 +35,7 @@ microwave2("aaa")
 def circlearea(radius):
     result = radius * radius * 3.14
     return result
+
 
 print(circlearea(2))
 
