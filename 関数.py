@@ -33,3 +33,6 @@ def circlearea(radius):
     return result
 
 print(circlearea(2))
+
+R1 = circlearea(1.1)
+print("半径は%f" % (R1))
