@@ -102,3 +102,8 @@ for i in range(0, 10):
 
 else:
     print("Finish!")
+
+def test():
+    print("テスト関数")
+
+
