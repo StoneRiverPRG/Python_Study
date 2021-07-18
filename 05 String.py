@@ -15,3 +15,22 @@ print("My name is " + name)
 mynameis = "My name is " + name
 print(mynameis)
 # My name is Stone
+
+# 長い文字列は"""　トリプル九オートで囲う
+longstr = """aaa,
+iii,
+uuu"""
+print(longstr)
+#aaa,
+#iii,
+#uuu
+
+#改行やタブ、スペースもそのまま表示される
+longstr = """
+    aaa
+    bbb
+    ccc"""
+print(longstr)
+#    aaa
+#    bbb
+#    ccc
