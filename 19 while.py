@@ -48,5 +48,6 @@ print("スライムを倒した！")
 スライムを倒した！
 """
 
+
 for i in range(1, 6):
     print(i)

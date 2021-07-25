@@ -1,3 +1,6 @@
+# Ascii　文字の扱い
+# ord(), chr()
+
 s = 'A'
 
 ord_s = ord(s)

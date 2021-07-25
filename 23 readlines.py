@@ -2,7 +2,7 @@
 # readline(), readlines(), read()
 
 import sys
-# sysをインポートすることで入力関数群を使用できる
+# sysをインポートすることで入力関数群を使用できる　
 
 #####################
 # readline()
