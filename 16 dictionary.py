@@ -52,3 +52,17 @@ print(fruits_price)
 
 print("バナナは" + str(fruits_price["バナナ"]) + "円です")
 # バナナは100円です
+
+fruits_copy = fruits_price
+# NG
+# 値コピーと思いきやリンクしているので両方変わっちゃう
+fruits_copy["バナナ"] = 210
+
+print(fruits_price)
+# {'バナナ': 210, 'ぶどう': 500, 'オレンジ': 150}
+# オリジナルも210に変わっちゃってる
+
+fruits_copy2 = fruits_price.copy()
+# ディクショナリーのコピー
+# 値コピーになるのでオリジナルとリンクしない
+
