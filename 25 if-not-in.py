@@ -34,3 +34,25 @@ if "メロン" not in fruits:
 
 # if A not in B 構文が使えます。
 # リストとの相性が良いです。
+
+# if A (not) in Bの使用例
+name = "StoneRiver"
+nickname = ""
+# 子音リスト（大文字、小文字）
+voiceless = ["a", "i", "u", "e", "o", "A", "I", "U", "E", "O"]
+
+for s in name:
+    if s not in voiceless:
+        # s が子音じゃないとき
+        nickname += s
+    else:
+        print(str(s) + "は子音なので除去します")
+
+print(nickname)
+# oは子音なので除去します
+# eは子音なので除去します
+# iは子音なので除去します
+# eは子音なので除去します
+# StnRvr
+
+# o, e, i, e が除去された
