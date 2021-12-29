@@ -5,6 +5,10 @@
 print("Hello " + "World!")
 # Hello World!
 
+# * で複数回連続表示できる
+print("Hello " * 4)
+# Hello Hello Hello Hello
+
 name = "Stone"
 
 # 文字列と文字列が入った変数の連結

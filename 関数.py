@@ -17,6 +17,13 @@ def microwave():
 
 microwave()
 
+# TODO: some Todo comment here
+# BUG bug comment
+# FIXME:fix comment
+# HACK: hack
+# XXX :xxx commnent
+# FIX
+
 
 def microwave2(mode):
     if(mode == "解凍"):

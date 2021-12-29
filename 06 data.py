@@ -16,6 +16,7 @@ price = 110
 # エラーになってしまう！
 
 # 文字列型＋文字列型＋文字列型
+# str()で文字列型に変換する
 print("ジュースの価格は" + str(price) + "円です。")
 # ジュースの価格は110円です。
 
@@ -26,3 +27,17 @@ price = 110
 total_price = price * int(count)
 print(total_price)
 # 330
+
+# float型
+pi = 3.1415
+print(pi)
+# 3.1415
+
+# 正n角形の内角1つの角度を計算
+n = 6
+sou_kakudo = 180 * (n -2)
+naikaku = sou_kakudo / n
+print("内角の合計は" + str(sou_kakudo) + "°")
+print("正n角形の1つの内角は" + str(naikaku) + "°")
+# 内角の合計は720°
+# 正n角形の1つの内角は120.0°
