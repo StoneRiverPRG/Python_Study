@@ -20,7 +20,7 @@ mynameis = "My name is " + name
 print(mynameis)
 # My name is Stone
 
-# 長い文字列は"""　トリプル九オートで囲う
+# 長い文字列は"""　トリプルクオートで囲う
 longstr = """aaa,
 iii,
 uuu"""
