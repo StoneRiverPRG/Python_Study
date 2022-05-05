@@ -3,13 +3,16 @@ import heapq
 # （ライブラリ名と同じファイル名にはしない！）
 #  partially initialized module 'heapq' has no attribute 'heappush' (most likely due to a circular import)
 
-# ヒープキューの使い方と2次元リストへの応用法
+# ヒープキューの使い方と2次元リストへの応用法(keyの指定）
 
 # ヒープとは
+# heap : 積み重ねたもの
 
 # キューとは
+# キュー（先入れ先出し）、スタック（後入れ先出し）
 
 # ヒープ＋キュー = heapqライブラリとは
+# 優先度付きキュー
 
 # heapqライブラリのオーソドックスな使い方
 # 最小値を取り出したいリストを準備
@@ -118,57 +121,94 @@ import random
 import pprint
 # 2次元リストprint整形用
 
-monster = []
+# (x, y)座標に出現したモンスターのレベル(Lv)
+# (x, y, Lv)のタプルを管理するリストを想定
+# 低いレベルのモンスターを3匹ターゲットに選びたい
+# モンスターリスト
+monsters = []
 for i in range(10):
-    x = random.randint(0, 400)
-    y = random.randint(0, 300)
+    x = random.randint(0, 200)
+    y = random.randint(0, 100)
     level = random.randint(1, 99)
     entity = (x, y, level)
-    monster.append(entity)
+    monsters.append(entity)
 
-print("monsterリストの表示")
-pprint.pprint(monster)
-
-print("")
-
-monster_for_heap = [(value[2], value) for value in monster]
-print("monster_for_heap : heapq用にkeyを設定したリスト（heapify前）")
-pprint.pprint(monster_for_heap)
-
-print("")
-
-# 最大5個分
-big5 = heapq.nlargest(5, monster, key= lambda x:x[2])
-print("monster : level big 5")
-pprint.pprint(big5, width=20)
-#[(293, 184, 97),
-# (351, 195, 97),
-# (101, 276, 96),
-# (150, 197, 93),
-# (346, 184, 92)]
+print("monstersリストの表示")
+pprint.pprint(monsters)
+# [(55, 40, 86),
+#  (164, 29, 63),
+#  (196, 100, 77),
+#  (31, 82, 61),
+#  (121, 32, 54),
+#  (91, 48, 4),
+#  (36, 36, 96),
+#  (126, 29, 91),
+#  (26, 92, 20),
+#  (93, 71, 89)]
 
 print("")
 
-# 最小5個分
-min5 = heapq.nsmallest(5, monster, key= lambda x:x[2])
-print("monster : level small 5")
-pprint.pprint(min5, width=20)
-#[(293, 184, 97),
-# (351, 195, 97),
-# (101, 276, 96),
-# (150, 197, 93),
-# (346, 184, 92)]
+# heapifyにkey指定が出来ないのでkey（レベル）を先頭に持ってきた専用リストを作成
+# (key, (x, y, Lv))
+# 例：元データ (139, 17, 42) → heap用 (42, (139, 17, 42))
+monsters_for_heap = [(value[2], value) for value in monsters]
+print("monsters_for_heap : heapq用にkeyを設定したリスト（heapify前）")
+pprint.pprint(monsters_for_heap)
+# [(86, (55, 40, 86)),
+#  (63, (164, 29, 63)),
+#  (77, (196, 100, 77)),
+#  (61, (31, 82, 61)),
+#  (54, (121, 32, 54)),
+#  (4, (91, 48, 4)),
+#  (96, (36, 36, 96)),
+#  (91, (126, 29, 91)),
+#  (20, (26, 92, 20)),
+#  (89, (93, 71, 89))]
+print("")
+
+# 最大3個分
+# heapq.nlagestは元々key指定できる.
+big3 = heapq.nlargest(3, monsters, key= lambda x:x[2])
+print("monster : level big 3")
+pprint.pprint(big3, width=20)
+# [(36, 36, 96),
+#  (126, 29, 91),
+#  (93, 71, 89)]
+print("")
+
+# 最小3個分
+# heapq.nsmallestは元々key指定できる.
+min3 = heapq.nsmallest(3, monsters, key= lambda x:x[2])
+print("monster : level small 3")
+pprint.pprint(min3, width=20)
+# [(91, 48, 4),
+#  (26, 92, 20),
+#  (121, 32, 54)]
 
 print("")
 
-
-heapq.heapify(monster_for_heap)
-print("monster_for_heap =")
-pprint.pprint(monster_for_heap)
-
+# heap化
+heapq.heapify(monsters_for_heap)
+print("monsters_for_heap =")
+pprint.pprint(monsters_for_heap)
+# [(4, (91, 48, 4)),
+#  (20, (26, 92, 20)),
+#  (77, (196, 100, 77)),
+#  (61, (31, 82, 61)),
+#  (54, (121, 32, 54)),
+#  (86, (55, 40, 86)),
+#  (96, (36, 36, 96)),
+#  (91, (126, 29, 91)),
+#  (63, (164, 29, 63)),
+#  (89, (93, 71, 89))]
 print("")
 
-print("heappopで5回データ取り出し")
-for i in range(5):
-    _, monster2 = heapq.heappop(monster_for_heap)
+print("heappopで3回データ取り出し")
+for i in range(3):
+    _, monster2 = heapq.heappop(monsters_for_heap)
+    # heap用に(key, 元list)のタプルを作成したので、
+    # key分は捨てる（アンダーバーに代入するが使わない）
     print(monster2)
+# (91, 48, 4)
+# (26, 92, 20)
+# (121, 32, 54)
