@@ -70,9 +70,34 @@ print(test_list)
 # min_value = 0
 # [2, 3, 4, 3, 5, 8, 7, 6, 5, 5, 9, 9, 9, 7, 10]
 # プッシュ（入れて）してからポップ（出して）なので要素数変わらず.
-# なぜ高速か
 
-# 実用例
+# heapq.nsmallest
+# 最小値順にn個の値を"リスト"で返す関数
+# ちなみにkey指定も出来る.
+# popじゃないのでデータは削除されない
+small_list = heapq.nsmallest(3, test_list)
+print(small_list)
+# [2, 3, 3]
+print(test_list)
+# [2, 3, 4, 3, 5, 8, 7, 6, 5, 5, 9, 9, 9, 7, 10]
+
+print("")
+
+# heapq.nlargest
+# 今度はn個の大きい値を"リスト"で返す関数
+# こちらもkey指定出来る.
+# popじゃないのでデータ削除されないのもnsmallestと同じ
+big_list = heapq.nlargest(3, test_list)
+print(big_list)
+# [10, 9, 9]
+print(test_list)
+# [2, 3, 4, 3, 5, 8, 7, 6, 5, 5, 9, 9, 9, 7, 10]
+print(heapq.nlargest(3, [0, 4, 2, -1, 8, 1]))
+# [8, 4, 2]
+# heap化されていなくても使える
+print("")
+
+# リストインリスト（2次元リスト）での例
 
 # テスト1
 heap_list_in_list = []
@@ -85,12 +110,18 @@ heapq.heappush(heap_list_in_list, [30, "banana", 100])
 # key = lambda x:x[2] 等で比較要素は指定できない模様
 
 print(heap_list_in_list)
+# [[-1, 'zzzz', 999], [4, 'apple', 1], [30, 'banana', 100]]
 print(heapq.heappop(heap_list_in_list))
+# [-1, 'zzzz', 999]
 print(heapq.heappop(heap_list_in_list))
+# [4, 'apple', 1]
 print(heapq.heappop(heap_list_in_list))
+# [30, 'banana', 100]
+# ※ 先頭要素の -1 -> 4 -> 30の順になった。
 # print(heapq.heappop(heap_list_in_list))
 # IndexError: index out of range
-# heapのリストが空の場合取り出せない(pop)のでエラー
+# 要素3つしかないので4回目のpopでは
+# heapのリストが空で取り出せない(pop)のでエラー
 
 # テスト2
 heap_list_in_list = []
@@ -104,11 +135,12 @@ min_value = heapq.nsmallest(1, heap_list_in_list, key= lambda x:x[2])
 # ラムダ関数で各要素の3番目 x[2] で比較するようkey指定
 # min_value = heapq.nsmallest(1, heap_list_in_list)
 # key不要（リストの先頭で比較）の場合は引数なしでOK
+# ちなみにn = 1を指定した場合はmin()の方が早いらしい
 
 print(min_value)
 # [[4, 'apple', 1]]
 # 要素3番目x[2]が比較されて最小値1の要素が表示された
-# nsmallestがn個の
+
 print(heap_list_in_list)
 # [[-1, 'zzzz', 999], [4, 'apple', 1], [30, 'banana', 100]]
 # popではないので要素数は減っていない
@@ -116,7 +148,7 @@ print(heap_list_in_list)
 max_value = heapq.nlargest(1, heap_list_in_list, key=lambda x:x[2])
 print(max_value)
 
-# 例題
+# 使用例
 import random
 import pprint
 # 2次元リストprint整形用
@@ -212,3 +244,17 @@ for i in range(3):
 # (91, 48, 4)
 # (26, 92, 20)
 # (121, 32, 54)
+
+
+# ちなみにsortでも出来る
+print(sorted(monsters, key = lambda x: x[2]))
+# [(91, 48, 4),
+#  (26, 92, 20),
+#  (121, 32, 54),
+#  (31, 82, 61),
+#  (164, 29, 63),
+#  (196, 100, 77),
+#  (55, 40, 86),
+#  (93, 71, 89),
+#  (126, 29, 91),
+#  (36, 36, 96)]
