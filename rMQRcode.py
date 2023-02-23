@@ -10,7 +10,7 @@ data = "https://oudon.xyz"
 qr = rMQR.fit(
     data,
     ecc=rmqrcode.ErrorCorrectionLevel.M,
-    fit_strategy=rmqrcode.FitStrategy.MINIMIZE_WIDTH
+    fit_strategy=rmqrcode.FitStrategy.MINIMIZE_HEIGHT
 )
 
 # ecc : ErrorCorrectionLevel
@@ -25,4 +25,4 @@ qr = rMQR.fit(
 # Save as Image
 image = QRImage(qr, module_size = 8)
 image.show()
-image.save("my_rMQR.png")
+image.save("my_rMQR2.png")
