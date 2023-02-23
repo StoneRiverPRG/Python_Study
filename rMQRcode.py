@@ -3,6 +3,7 @@ import rmqrcode
 from rmqrcode import QRImage
 
 # pip install rmqrcode
+# v0.3.1
 # https://github.com/OUDON/rmqrcode-python#readme
 
 data = "https://oudon.xyz"
