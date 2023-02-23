@@ -23,6 +23,6 @@ qr = rMQR.fit(
     # FitStrategy.BALANCED: Try to keep balance of width and height.
 
 # Save as Image
-image = QRImage(qr, module_size = 8)
+image = QRImage(qr, module_size = 128)
 image.show()
 image.save("my_rMQR_Balanced.png")
