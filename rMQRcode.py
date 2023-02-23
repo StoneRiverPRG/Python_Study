@@ -6,7 +6,7 @@ from rmqrcode import QRImage
 # v0.3.1
 # https://github.com/OUDON/rmqrcode-python#readme
 
-data = "https://oudon.xyz"
+data = "https://stone-program.com/"
 qr = rMQR.fit(
     data,
     ecc=rmqrcode.ErrorCorrectionLevel.M,
